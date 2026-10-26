@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<manifest>
+  <remote name="github" fetch="ssh://git@github.com" />
+  <remote name="aosp" fetch="https://android.googlesource.com" />
+  <default sync-j="8" remote="aosp" revision="main-kernel-build-2024" />
+  <!-- Dash sources and the workspace entry point. -->
+  <project name="Content-Creation-Club/android_kernel_xiaomi_dash" path="kernel/xiaomi/dash/kernel-6.6" remote="github" revision="dash-w-oss" />
+  <project name="Content-Creation-Club/android_kernel_xiaomi_dash_device_modules" path="kernel/xiaomi/dash/kernel_device_modules-6.6" remote="github" revision="dash-w-oss" />
+  <project name="Content-Creation-Club/android_kernel_xiaomi_dash_mtk_modules" path="kernel/xiaomi/dash/vendor/mediatek/kernel_modules" remote="github" revision="dash-w-oss" />
+  <project name="Content-Creation-Club/android_kernel_xiaomi_dash_build" path="kernel/xiaomi/dash/build" remote="github" revision="dash-w-oss">
+    <linkfile src="build.sh" dest="kernel/xiaomi/dash/build.sh" />
+  </project>
+  <project name="Content-Creation-Club/android_kernel_xiaomi_dash_bazel_mgk_rules" path="kernel/xiaomi/dash/build/bazel_mgk_rules" remote="github" revision="lineage-23.2">
+    <linkfile src="kleaf/bazel.WORKSPACE" dest="kernel/xiaomi/dash/WORKSPACE" />
+  </project>
+  <!-- Matching AOSP kernel 6.6 build tools and public dependencies. -->
+  <project name="kernel/build" path="kernel/xiaomi/dash/build/kernel">
+    <linkfile src="kleaf/bazel.sh" dest="kernel/xiaomi/dash/tools/bazel" />
+    <linkfile src="kleaf/bzlmod/bazel.MODULE.bazel" dest="kernel/xiaomi/dash/MODULE.bazel" />
+    <linkfile src="kleaf/bzlmod/bazel.WORKSPACE.bzlmod" dest="kernel/xiaomi/dash/WORKSPACE.bzlmod" />
+  </project>
+  <project name="platform/build/bazel_common_rules" path="kernel/xiaomi/dash/build/bazel_common_rules" />
+  <project name="kernel/common" path="kernel/xiaomi/dash/common" revision="android15-6.6-2026-07" upstream="android15-6.6-2026-07" dest-branch="android15-6.6-2026-07" />
+  <project name="kernel/configs" path="kernel/xiaomi/dash/kernel/configs" revision="main" upstream="main" dest-branch="main" />
+  <project name="kernel/common-modules/wonder" path="kernel/xiaomi/dash/common-modules/wonder" revision="144825c631d444dc7219c7affaea3e717b27df4c" upstream="android15-6.6" dest-branch="android15-6.6" />
+  <project name="kernel/common-modules/trusty" path="kernel/xiaomi/dash/common-modules/trusty" />
+  <project name="platform/external/virtio-media" path="kernel/xiaomi/dash/common-modules/virtio-media" />
+  <project name="kernel/common-modules/virtual-device" path="kernel/xiaomi/dash/common-modules/virtual-device" revision="211d96f861e1d6061ecb6bbe6e289ce8bf144290" upstream="android15-6.6" dest-branch="android15-6.6" />
+  <project name="platform/prebuilts/clang/host/linux-x86" path="kernel/xiaomi/dash/prebuilts/clang/host/linux-x86" clone-depth="1" />
+  <project name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" path="kernel/xiaomi/dash/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" clone-depth="1" />
+  <project name="platform/prebuilts/build-tools" path="kernel/xiaomi/dash/prebuilts/build-tools" clone-depth="1" />
+  <project name="platform/prebuilts/clang-tools" path="kernel/xiaomi/dash/prebuilts/clang-tools" clone-depth="1" />
+  <project name="kernel/prebuilts/build-tools" path="kernel/xiaomi/dash/prebuilts/kernel-build-tools" clone-depth="1" />
+  <project name="platform/prebuilts/rust" path="kernel/xiaomi/dash/prebuilts/rust" clone-depth="1" />
+  <project name="platform/system/tools/mkbootimg" path="kernel/xiaomi/dash/tools/mkbootimg" />
+  <project name="platform/prebuilts/jdk/jdk11" path="kernel/xiaomi/dash/prebuilts/jdk/jdk11" clone-depth="1" />
+  <project name="toolchain/prebuilts/ndk/r26" path="kernel/xiaomi/dash/prebuilts/ndk-r26" clone-depth="1" />
+  <project name="platform/external/libcap-ng" path="kernel/xiaomi/dash/external/libcap-ng" />
+  <project name="platform/external/libcap" path="kernel/xiaomi/dash/external/libcap" />
+  <project name="platform/external/bazel-skylib" path="kernel/xiaomi/dash/external/bazel-skylib" />
+  <project name="platform/external/bazelbuild-bazel-central-registry" path="kernel/xiaomi/dash/external/bazelbuild-bazel-central-registry" />
+  <project name="platform/external/bazelbuild-platforms" path="kernel/xiaomi/dash/external/bazelbuild-platforms" />
+  <project name="platform/external/bazelbuild-apple_support" path="kernel/xiaomi/dash/external/bazelbuild-apple_support" />
+  <project name="platform/external/bazelbuild-rules_cc" path="kernel/xiaomi/dash/external/bazelbuild-rules_cc" />
+  <project name="platform/external/bazelbuild-rules_java" path="kernel/xiaomi/dash/external/bazelbuild-rules_java" />
+  <project name="platform/external/bazelbuild-rules_license" path="kernel/xiaomi/dash/external/bazelbuild-rules_license" />
+  <project name="platform/external/bazelbuild-rules_pkg" path="kernel/xiaomi/dash/external/bazelbuild-rules_pkg" />
+  <project name="platform/external/bazelbuild-rules_python" path="kernel/xiaomi/dash/external/bazelbuild-rules_python" />
+  <project name="platform/external/python/absl-py" path="kernel/xiaomi/dash/external/python/absl-py" />
+  <project name="platform/external/lz4" path="kernel/xiaomi/dash/external/lz4" />
+  <project name="platform/external/pigz" path="kernel/xiaomi/dash/external/pigz" />
+  <project name="platform/external/toybox" path="kernel/xiaomi/dash/external/toybox" />
+  <project name="platform/external/zlib" path="kernel/xiaomi/dash/external/zlib" />
+  <project name="platform/external/zopfli" path="kernel/xiaomi/dash/external/zopfli" />
+  <!-- The public MGK rules resolve ../../../toolchain/pgo-profiles/kernel. -->
+  <project clone-depth="1" name="toolchain/pgo-profiles" path="toolchain/pgo-profiles" revision="main" />
+</manifest>
